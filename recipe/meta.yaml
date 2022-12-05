@@ -47,7 +47,7 @@ about:
     environment. A package hook (there are several types of those) tells
     PyInstaller what to include in the final app - such as the data files and
     (hidden) imports mentioned above.
-  doc_url: https://github.com/pyinstaller/pyinstaller-hooks-contrib/wiki
+  doc_url: https://github.com/pyinstaller/pyinstaller-hooks-contrib/blob/master/README.md
   dev_url: https://github.com/pyinstaller/pyinstaller-hooks-contrib
 
 extra:
