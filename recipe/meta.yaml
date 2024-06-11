@@ -1,5 +1,5 @@
 {% set name = "pyinstaller-hooks-contrib" %}
-{% set version = "2022.14" %}
+{% set version = "2024.7" %}
 
 package:
   name: {{ name|lower }}
@@ -7,36 +7,32 @@ package:
 
 source:
   url: https://github.com/pyinstaller/pyinstaller-hooks-contrib/archive/v{{ version }}.tar.gz
-  sha256: e5c94b9720545f8dadc105270ae16cafb2b4189e08dbf469104218cdcda2abef
+  sha256: 6bc703891fe21e8b983483a87b1a21a2ec6d3329575a6955457e639449efe78b
 
 build:
+  noarch: python
   number: 0
-  script: {{ PYTHON }} -m pip install . -vv
-  skip: True  # [py<37]
+  script: {{ PYTHON }} -m pip install .--no-deps --no-build-isolation -vv
 
 requirements:
   host:
-    - python
+    - python >=3.7
     - pip
-    - setuptools
-    - wheel
   run:
-    - python
+    - python >=3.7
+    - setuptools >=42.0.0
+    - importlib_metadata >=4.6
+    - packaging >=22.0
 
 test:
   imports:
     - _pyinstaller_hooks_contrib
     - _pyinstaller_hooks_contrib.hooks
-  requires:
-    - pip
-  commands:
-    - pip check
 
 about:
   home: https://github.com/pyinstaller/pyinstaller-hooks-contrib
   summary: Community maintained hooks for PyInstaller
   license: Apache-2.0 OR GPL-2.0-or-later
-  license_family: Other
   license_file:
     - LICENSE.GPL.txt
     - LICENSE.APL.txt
@@ -47,9 +43,13 @@ about:
     environment. A package hook (there are several types of those) tells
     PyInstaller what to include in the final app - such as the data files and
     (hidden) imports mentioned above.
-  doc_url: https://github.com/pyinstaller/pyinstaller-hooks-contrib/blob/master/README.md
+  doc_url: https://github.com/pyinstaller/pyinstaller-hooks-contrib/wiki
   dev_url: https://github.com/pyinstaller/pyinstaller-hooks-contrib
 
 extra:
+  anaconda-services:
+    ref: https://anaconda.zendesk.com/agent/tickets/50852
+    reason: Update to a newer version
   recipe-maintainers:
+    - ianaobi
     - nehaljwani
