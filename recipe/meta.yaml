@@ -13,6 +13,9 @@ build:
   number: 0
   script: {{ PYTHON }} -m pip install . -vv --no-build-isolation --no-deps
   skip: True  # [py<37]
+  entry_points:
+    - hook-dirs = _pyinstaller_hooks_contrib.hooks:get_hook_dirs
+    - tests = _pyinstaller_hooks_contrib.tests:get_test_dirs
 
 requirements:
   host:
