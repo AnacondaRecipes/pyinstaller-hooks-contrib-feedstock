@@ -43,7 +43,7 @@ test:
     - pytest-xdist
     - execnet >=1.5.0
     - psutil
-    - pyinstaller {{ pyinstaller }}
+    - pyinstaller
   commands:
     - pip check
     - pytest src/_pyinstaller_hooks_contrib/tests/test_libraries.py -v
