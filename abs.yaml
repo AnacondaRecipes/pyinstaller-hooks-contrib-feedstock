@@ -1,2 +1,3 @@
 channels:
  - https://staging.continuum.io/prefect/fs/pyinstaller-feedstock/pr10/ea15432
+ - https://staging.continuum.io/prefect/fs/pefile-feedstock/pr3/70149e3
