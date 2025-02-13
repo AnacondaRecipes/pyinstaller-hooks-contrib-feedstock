@@ -28,9 +28,7 @@ requirements:
 
 test:
   source_files:
-    - src/_pyinstaller_hooks_contrib/tests
-    - src/_pyinstaller_hooks_contrib/tests/scripts
-    - src/_pyinstaller_hooks_contrib/tests/data/test_hydra
+    - tests
   imports:
     - _pyinstaller_hooks_contrib
   requires:
@@ -43,7 +41,7 @@ test:
     - pyinstaller
   commands:
     - pip check
-    - pytest src/_pyinstaller_hooks_contrib/tests/test_libraries.py -v
+    - pytest tests/test_libraries.py -v
 
 about:
   home: https://github.com/pyinstaller/pyinstaller-hooks-contrib
