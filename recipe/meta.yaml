@@ -27,21 +27,26 @@ requirements:
     - setuptools >=42.0.0
 
 test:
-  source_files:
-    - tests
   imports:
     - _pyinstaller_hooks_contrib
   requires:
     - pip
+{% if python != "3.13" %}
+    # pyinstaller depends on pyinstaller-hooks-contrib
     - pytest >=2.7.3
     - pytest-timeout
     - pytest-xdist
     - execnet >=1.5.0
     - psutil
     - pyinstaller
+  source_files:
+    - tests
+{% endif %}
   commands:
     - pip check
+{% if python != "3.13" %}
     - pytest tests/test_libraries.py -v
+{% endif %}
 
 about:
   home: https://github.com/pyinstaller/pyinstaller-hooks-contrib
