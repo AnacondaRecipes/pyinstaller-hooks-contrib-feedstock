@@ -45,7 +45,8 @@ test:
   commands:
     - pip check
 {% if python != "3.13" %}
-    - pytest tests/test_libraries.py -v
+    # Skipping due to failures RE: unwanted typeguard plugin https://github.com/pyinstaller/pyinstaller/issues/8728
+    - pytest tests/test_libraries.py -v -k "not test_pytest_runner"
 {% endif %}
 
 about:
