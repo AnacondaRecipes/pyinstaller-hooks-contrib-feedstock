@@ -1,5 +1,5 @@
 {% set name = "pyinstaller-hooks-contrib" %}
-{% set version = "2024.7" %}
+{% set version = "2025.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/pyinstaller/pyinstaller-hooks-contrib/archive/v{{ version }}.tar.gz
-  sha256: 6bc703891fe21e8b983483a87b1a21a2ec6d3329575a6955457e639449efe78b
+  sha256: ff1ef36baab12d5da8702bb39230faf52c7190fd1ae99a48fe99d58597f2c848
 
 build:
   number: 0
@@ -18,40 +18,43 @@ requirements:
   host:
     - python
     - pip
-    - setuptools
+    - setuptools >=30.3.0
     - wheel
   run:
     - python
     - importlib_metadata >=4.6  # [py<310]
     - packaging >=22.0
+    - setuptools >=42.0.0
 
 test:
-  source_files:
-    - src/_pyinstaller_hooks_contrib/tests
-    - src/_pyinstaller_hooks_contrib/tests/scripts
-    - src/_pyinstaller_hooks_contrib/tests/data/test_hydra
   imports:
     - _pyinstaller_hooks_contrib
   requires:
     - pip
+{% if python != "3.13" %}
+    # pyinstaller depends on pyinstaller-hooks-contrib
     - pytest >=2.7.3
     - pytest-timeout
     - pytest-xdist
     - execnet >=1.5.0
     - psutil
     - pyinstaller
+  source_files:
+    - tests
+{% endif %}
   commands:
     - pip check
-    - pytest src/_pyinstaller_hooks_contrib/tests/test_libraries.py -v
+{% if python != "3.13" %}
+    # Skipping due to failures RE: unwanted typeguard plugin https://github.com/pyinstaller/pyinstaller/issues/8728
+    - pytest tests/test_libraries.py -v -k "not test_pytest_runner"
+{% endif %}
 
 about:
   home: https://github.com/pyinstaller/pyinstaller-hooks-contrib
   summary: Community maintained hooks for PyInstaller
   license: Apache-2.0 OR GPL-2.0-or-later
   license_family: Other
-  license_file:
-    - LICENSE.GPL.txt
-    - LICENSE.APL.txt
+  license_file: LICENSE
   description: |
     A "hook" file extends PyInstaller to adapt it to the special needs and
     methods used by a Python package. The word "hook" is used for two kinds of
