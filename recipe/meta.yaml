@@ -1,5 +1,5 @@
 {% set name = "pyinstaller-hooks-contrib" %}
-{% set version = "2025.1" %}
+{% set version = "2026.5" %}
 
 package:
   name: {{ name|lower }}
@@ -7,18 +7,18 @@ package:
 
 source:
   url: https://github.com/pyinstaller/pyinstaller-hooks-contrib/archive/v{{ version }}.tar.gz
-  sha256: ff1ef36baab12d5da8702bb39230faf52c7190fd1ae99a48fe99d58597f2c848
+  sha256: d73931ab1172dfb3938e1ba18d22599632169a9ccdb9f7ea500aa5cbca17cf20
 
 build:
   number: 0
   script: {{ PYTHON }} -m pip install . -vv --no-build-isolation --no-deps
-  skip: True  # [py<37]
+  skip: True  # [py<38]
 
 requirements:
   host:
     - python
     - pip
-    - setuptools >=30.3.0
+    - setuptools >=42.0.0
     - wheel
   run:
     - python
