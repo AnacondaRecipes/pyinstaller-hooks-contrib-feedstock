@@ -31,7 +31,7 @@ test:
     - _pyinstaller_hooks_contrib
   requires:
     - pip
-{% if python != "3.13" %}
+{% if python != "3.14" %}
     # pyinstaller depends on pyinstaller-hooks-contrib
     - pytest >=2.7.3
     - pytest-timeout
@@ -44,9 +44,8 @@ test:
 {% endif %}
   commands:
     - pip check
-{% if python != "3.13" %}
-    # Skipping due to failures RE: unwanted typeguard plugin https://github.com/pyinstaller/pyinstaller/issues/8728
-    - pytest tests/test_libraries.py -v -k "not test_pytest_runner"
+{% if python != "3.14" %}
+    - pytest tests/test_libraries.py -v
 {% endif %}
 
 about:
