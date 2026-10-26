@@ -1,13 +1,13 @@
 {% set name = "pyinstaller-hooks-contrib" %}
-{% set version = "2026.8" %}
+{% set version = "2026.9" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://github.com/pyinstaller/pyinstaller-hooks-contrib/archive/v{{ version }}.tar.gz
-  sha256: bf03428380f121c996c189c3e69cd9dc633e16048482840c46b53484ec5cf74b
+  url: https://github.com/pyinstaller/{{ name }}/archive/v{{ version }}.tar.gz
+  sha256: 2a420e0c19ae6d0f2cf721a963466cb9cd3d83906049ff6b8e6aa75b5cb16992
 
 build:
   number: 0
@@ -22,7 +22,6 @@ requirements:
     - wheel
   run:
     - python
-    - importlib_metadata >=4.6  # [py<310]
     - packaging >=22.0
     - setuptools >=42.0.0
 
